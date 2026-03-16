@@ -1,9 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="..\..\build.settings.props" />
-  <Import Project="..\..\readme-generation.props" />
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
-
-</Project>
