@@ -7,17 +7,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04  # Используем актуальную версию Ubuntu для .NET 10
+    runs-on: ubuntu-22.04  # Используем конкретную версию Ubuntu
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Обновляем до актуальной версии
+        uses: actions/checkout@v2
 
       - name: Check available .NET versions
         run: apt list --installed | grep dotnet
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4  # Обновляем до актуальной версии
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '10.0.x'  # Устанавливает последнюю доступную 10.0 версию
 
