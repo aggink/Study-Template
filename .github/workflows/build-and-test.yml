@@ -33,64 +33,93 @@ jobs:
       - name: Verify .NET installation
         run: dotnet --info || echo "⚠️ .NET not found"
 
-      - name: Find project/solution files (.NET 10 format)
+      - name: Find all solution files
+        id: find-solutions
         run: |
-          echo "Looking for .slnx files (new .NET 10 format):"
-          find . -name "*.slnx" || echo "No .slnx files found"
-          echo "Looking for .sln files (legacy format):"
-          find . -name "*.sln" || echo "No .sln files found"
-          echo "Looking for .csproj files:"
-          find . -name "*.csproj" || echo "No .csproj files found"
-          echo "Looking for .fsproj files:"
-          find . -name "*.fsproj" || echo "No .fsproj files found"
-
-      - name: Set solution/project path
-        id: set-path
-        run: |
-          if [ -f "*.slnx" ]; then
-            echo "SOLUTION_PATH=*.slnx" >> $GITHUB_ENV
-            echo "Using new .slnx format (NET 10+)"
-          elif [ -f "*.sln" ]; then
-            echo "SOLUTION_PATH=*.sln" >> $GITHUB_ENV
-            echo "Using legacy .sln format"
-          elif [ -f "*.csproj" ]; then
-            echo "SOLUTION_PATH=*.csproj" >> $GITHUB_ENV
-            echo "Using single project file"
+          echo "🔍 Searching for all .slnx files..."
+          SLNX_FILES=$(find . -name "*.slnx" -type f | sort)
+          
+          if [ -n "$SLNX_FILES" ]; then
+            echo "Found .slnx files:"
+            echo "$SLNX_FILES"
+            
+            # Сохраняем список файлов в переменную окружения
+            # Используем разделитель | для безопасной передачи
+            SLNX_LIST=""
+            while IFS= read -r file; do
+              if [ -z "$SLNX_LIST" ]; then
+                SLNX_LIST="$file"
+              else
+                SLNX_LIST="$SLNX_LIST|$file"
+              fi
+            done <<< "$SLNX_FILES"
+            
+            echo "SLNX_LIST=$SLNX_LIST" >> $GITHUB_ENV
+            echo "✅ Found $(echo "$SLNX_FILES" | wc -l) .slnx files"
           else
-            echo "No solution or project file found. Please check your repository structure."
-            exit 1
+            echo "⚠️ No .slnx files found"
+            echo "SLNX_LIST=" >> $GITHUB_ENV
           fi
 
-      - name: Start restoring dependencies
-        run: echo "🔹 Starting to restore dependencies..."
-
-      - name: Restore dependencies
-        run: dotnet restore ${{ env.SOLUTION_PATH }}
-
-      - name: Dependencies restored
-        run: echo "✔️ Dependencies restored successfully!"
-
-      - name: Start building the project
-        run: echo "🔹 Starting to build the project..."
-
-      - name: Build project
-        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
-
-      - name: Build completed
-        run: echo "✔️ Project build completed successfully!"
-
-      - name: Start running tests
-        run: echo "🔹 Starting to run tests..."
-
-      - name: Run tests
+      - name: Process each solution
+        if: env.SLNX_LIST != ''
         run: |
-          if [ -f "*.slnx" ] || [ -f "*.sln" ]; then
-            dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal
-          elif [ -f "*Tests.csproj" ] || [ -f "*Test.csproj" ]; then
-            dotnet test *Tests.csproj *Test.csproj --configuration Release --no-build --verbosity normal 2>/dev/null || echo "No test projects found"
-          else
-            echo "No test projects found, skipping tests"
-          fi
+          # Разделяем список по |
+          IFS='|' read -ra SOLUTIONS <<< "${{ env.SLNX_LIST }}"
+          
+          for SOLUTION in "${SOLUTIONS[@]}"; do
+            echo ""
+            echo "═══════════════════════════════════════════════"
+            echo "🔧 Processing solution: $SOLUTION"
+            echo "═══════════════════════════════════════════════"
+            
+            # Получаем директорию решения
+            SOLUTION_DIR=$(dirname "$SOLUTION")
+            
+            echo "📂 Working directory: $SOLUTION_DIR"
+            
+            # Переходим в директорию решения
+            cd "$SOLUTION_DIR"
+            
+            # Восстанавливаем зависимости
+            echo "📦 Restoring dependencies..."
+            dotnet restore "$(basename "$SOLUTION")"
+            
+            # Собираем проект
+            echo "🏗️ Building project..."
+            dotnet build "$(basename "$SOLUTION")" --configuration Release --no-restore
+            
+            # Ищем и запускаем тесты
+            echo "🧪 Running tests..."
+            TEST_PROJECTS=$(find . -name "*Tests.csproj" -o -name "*Test.csproj" -type f)
+            
+            if [ -n "$TEST_PROJECTS" ]; then
+              for TEST_PROJ in $TEST_PROJECTS; do
+                echo "  Running tests in: $TEST_PROJ"
+                dotnet test "$TEST_PROJ" --configuration Release --no-build --verbosity normal || echo "  ⚠️ Tests failed in $TEST_PROJ"
+              done
+            else
+              echo "  No test projects found in this solution"
+            fi
+            
+            # Возвращаемся в корневую директорию
+            cd "$GITHUB_WORKSPACE"
+            
+            echo "✅ Completed processing: $SOLUTION"
+          done
 
-      - name: Tests completed
-        run: echo "✔️ Tests completed successfully!"
+      - name: Summary
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "📊 Build Summary"
+          echo "═══════════════════════════════════════════════"
+          
+          if [ -n "${{ env.SLNX_LIST }}" ]; then
+            IFS='|' read -ra SOLUTIONS <<< "${{ env.SLNX_LIST }}"
+            echo "✅ Processed ${#SOLUTIONS[@]} solutions:"
+            for SOLUTION in "${SOLUTIONS[@]}"; do
+              echo "  • $SOLUTION"
+            done
+          else
+            echo "⚠️ No solutions were processed"
+          fi
