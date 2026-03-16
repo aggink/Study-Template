@@ -1,0 +1,55 @@
+name: Build & Test
+
+on:
+  push:
+    branches:
+      - '**'  # Запускается для всех веток
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04  # Используем актуальную версию Ubuntu для .NET 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Обновляем до актуальной версии
+
+      - name: Check available .NET versions
+        run: apt list --installed | grep dotnet
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4  # Обновляем до актуальной версии
+        with:
+          dotnet-version: '10.0.x'  # Устанавливает последнюю доступную 10.0 версию
+
+      - name: Install .NET 10.0 SDK manually (если не установлено)
+        run: |
+          wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+          chmod +x dotnet-install.sh
+          ./dotnet-install.sh --channel 10.0
+
+      - name: Start restoring dependencies
+        run: echo "🔹 Starting to restore dependencies..."
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Dependencies restored
+        run: echo "✔️ Dependencies restored successfully!"
+
+      - name: Start building the project
+        run: echo "🔹 Starting to build the project..."
+
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Build completed
+        run: echo "✔️ Project build completed successfully!"
+
+      - name: Start running tests
+        run: echo "🔹 Starting to run tests..."
+
+      - name: Run tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+      - name: Tests completed
+        run: echo "✔️ Tests completed successfully!"
