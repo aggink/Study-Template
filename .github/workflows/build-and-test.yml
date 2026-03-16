@@ -11,13 +11,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4  # Обновляем до актуальной версии
 
       - name: Check available .NET versions
-        run: apt list --installed | grep dotnet
+        run: |
+          apt list --installed 2>/dev/null | grep dotnet || echo "No .NET packages found in system"
+        # 2>/dev/null - скрываем предупреждение apt
+        # || echo - не прерываем выполнение, если ничего не найдено
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4  # Обновляем до v4 для лучшей поддержки .NET 10
         with:
           dotnet-version: '10.0.x'  # Устанавливает последнюю доступную 10.0 версию
 
@@ -26,6 +29,9 @@ jobs:
           wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
           chmod +x dotnet-install.sh
           ./dotnet-install.sh --channel 10.0
+
+      - name: Verify .NET installation
+        run: dotnet --info || echo "⚠️ .NET not found"
 
       - name: Start restoring dependencies
         run: echo "🔹 Starting to restore dependencies..."
