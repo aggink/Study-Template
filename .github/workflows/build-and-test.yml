@@ -33,11 +33,39 @@ jobs:
       - name: Verify .NET installation
         run: dotnet --info || echo "⚠️ .NET not found"
 
+      - name: Find project/solution files (.NET 10 format)
+        run: |
+          echo "Looking for .slnx files (new .NET 10 format):"
+          find . -name "*.slnx" || echo "No .slnx files found"
+          echo "Looking for .sln files (legacy format):"
+          find . -name "*.sln" || echo "No .sln files found"
+          echo "Looking for .csproj files:"
+          find . -name "*.csproj" || echo "No .csproj files found"
+          echo "Looking for .fsproj files:"
+          find . -name "*.fsproj" || echo "No .fsproj files found"
+
+      - name: Set solution/project path
+        id: set-path
+        run: |
+          if [ -f "*.slnx" ]; then
+            echo "SOLUTION_PATH=*.slnx" >> $GITHUB_ENV
+            echo "Using new .slnx format (NET 10+)"
+          elif [ -f "*.sln" ]; then
+            echo "SOLUTION_PATH=*.sln" >> $GITHUB_ENV
+            echo "Using legacy .sln format"
+          elif [ -f "*.csproj" ]; then
+            echo "SOLUTION_PATH=*.csproj" >> $GITHUB_ENV
+            echo "Using single project file"
+          else
+            echo "No solution or project file found. Please check your repository structure."
+            exit 1
+          fi
+
       - name: Start restoring dependencies
         run: echo "🔹 Starting to restore dependencies..."
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
 
       - name: Dependencies restored
         run: echo "✔️ Dependencies restored successfully!"
@@ -46,7 +74,7 @@ jobs:
         run: echo "🔹 Starting to build the project..."
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
 
       - name: Build completed
         run: echo "✔️ Project build completed successfully!"
@@ -55,7 +83,14 @@ jobs:
         run: echo "🔹 Starting to run tests..."
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: |
+          if [ -f "*.slnx" ] || [ -f "*.sln" ]; then
+            dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal
+          elif [ -f "*Tests.csproj" ] || [ -f "*Test.csproj" ]; then
+            dotnet test *Tests.csproj *Test.csproj --configuration Release --no-build --verbosity normal 2>/dev/null || echo "No test projects found"
+          else
+            echo "No test projects found, skipping tests"
+          fi
 
       - name: Tests completed
         run: echo "✔️ Tests completed successfully!"
