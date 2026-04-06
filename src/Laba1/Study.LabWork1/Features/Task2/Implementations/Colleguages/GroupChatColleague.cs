@@ -28,6 +28,7 @@ public class GroupChatColleague : BaseColleague
             throw new InvalidOperationException("Cannot create user without name!");
         }
         Name = name;
+        mediator.AddParticipant(this);
     }
 
     /// <summary>
