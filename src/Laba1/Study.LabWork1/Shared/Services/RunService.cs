@@ -23,14 +23,15 @@ public class RunService : IRunService
 
         Console.WriteLine($"p1: {p1}");
         Console.WriteLine($"p2: {p2}");
+        Console.WriteLine();
 
         Console.WriteLine($"Сложение: {sum}");
         Console.WriteLine($"Вычитание: {diff}");
         Console.WriteLine($"Умножение на число: {multScalar}");
         Console.WriteLine($"Умножение пикселей: {multPixel}");
+        Console.WriteLine();
 
         Console.WriteLine($"HEX p1: {p1.ToHex()}");
-
         Console.WriteLine($"p1 == p2: {p1 == p2}");
     }
 
