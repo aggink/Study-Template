@@ -1,5 +1,5 @@
 using Study.LabWork1.Shared.Abstractions;
-
+using Study.LabWork1.Features;
 namespace Study.LabWork1.Shared.Services;
 
 /// <summary>
@@ -10,7 +10,10 @@ public class RunService : IRunService
     /// <summary>
     /// Задание 1
     /// </summary>
-    public void RunTask1() => throw new NotImplementedException();
+    public void RunTask1()
+    {
+        new Task1().Exec();
+    }
 
     /// <summary>
     /// Задание 2
