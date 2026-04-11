@@ -115,7 +115,7 @@ This method has no parameters.
 
 ##### Summary
 
-Задание 2
+Задание 2. Паттерн Фасад
 
 ##### Parameters
 
@@ -126,7 +126,7 @@ This method has no parameters.
 
 ##### Summary
 
-Задание 3
+Задание 3. Дерево
 
 ##### Parameters
 
