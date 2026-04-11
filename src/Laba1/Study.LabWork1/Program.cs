@@ -9,14 +9,15 @@ public static class Program
 {
     /// <summary>
     /// Номер выполняемой задачи
-    /// </summary>
-    private const int RUN_TASK_NUMBER = 1;
-
+    /// </summary
     /// <summary>
     /// Старт программы
     /// </summary>
     public static void Main()
     {
+        Console.WriteLine("Choose Task: 1, 2, 3");
+        int RUN_TASK_NUMBER = int.Parse(Console.ReadLine());
+
         var service = new RunService();
 
         // todo: можно переписать на ввод с консоли
