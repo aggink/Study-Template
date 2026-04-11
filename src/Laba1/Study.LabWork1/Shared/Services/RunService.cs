@@ -1,5 +1,5 @@
-using Study.LabWork1.Shared.Abstractions;
 using Study.LabWork1.Features.Task1;
+using Study.LabWork1.Shared.Abstractions;
 
 namespace Study.LabWork1.Shared.Services;
 
@@ -33,6 +33,7 @@ public class RunService : IRunService
 
         Console.WriteLine($"HEX p1: {p1.ToHex()}");
         Console.WriteLine($"p1 == p2: {p1 == p2}");
+        Console.WriteLine();
     }
 
     /// <summary>
