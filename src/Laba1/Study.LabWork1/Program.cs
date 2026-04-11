@@ -15,7 +15,7 @@ public static class Program
     /// </summary>
     public static void Main()
     {
-        Console.WriteLine("Выберите задание (1, 2 или 3):");
+        Console.WriteLine("Выберите задание (1, 2 или 3):");//1
         int RUN_TASK_NUMBER = int.Parse(Console.ReadLine());
 
         var service = new RunService();
