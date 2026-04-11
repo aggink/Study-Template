@@ -9,4 +9,8 @@
   <Folder Name="/tests/">
     <Project Path="Study.LabWork1.UnitTests/Study.LabWork1.UnitTests.csproj" />
   </Folder>
+  <Folder Name="/tests/Features/" />
+  <Folder Name="/tests/Features/Task1/">
+    <File Path="HSLtest.cs" />
+  </Folder>
 </Solution>
