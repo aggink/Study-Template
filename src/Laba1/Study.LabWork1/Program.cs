@@ -15,8 +15,7 @@ public static class Program
     /// </summary>
     public static void Main()
     {
-        Console.WriteLine("Choose Task: 1, 2, 3");
-        int RUN_TASK_NUMBER = int.Parse(Console.ReadLine());
+        int RUN_TASK_NUMBER = 2;
 
         var service = new RunService();
 
