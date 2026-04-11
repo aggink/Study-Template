@@ -15,9 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Task1\" />
     <Folder Include="Features\Task2\" />
     <Folder Include="Features\Task3\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
