@@ -11,6 +11,7 @@
     <Folder Include="Features\Task1\" />
     <Folder Include="Features\Task2\" />
     <Folder Include="Features\Task3\" />
+    <Folder Include="Features\task1\" />
   </ItemGroup>
 
 </Project>
