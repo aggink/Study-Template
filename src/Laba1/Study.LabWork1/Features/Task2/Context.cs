@@ -1,5 +1,5 @@
 namespace Study.LabWork1.Features.Task2;
-
+//
 public class Context
 {
     private IStrategy _strategy;

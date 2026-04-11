@@ -15,11 +15,10 @@ public static class Program
     /// </summary>
     public static void Main()
     {
-        int RUN_TASK_NUMBER = 1;
+        Console.WriteLine("Выберите задание (1, 2 или 3):");
+        int RUN_TASK_NUMBER = int.Parse(Console.ReadLine());
 
         var service = new RunService();
-
-        // todo: можно переписать на ввод с консоли
 
         switch (RUN_TASK_NUMBER)
         {
@@ -37,3 +36,4 @@ public static class Program
         }
     }
 }
+//

@@ -8,3 +8,4 @@ namespace Study.LabWork1.Features.Task2
         }
     }
 }
+//

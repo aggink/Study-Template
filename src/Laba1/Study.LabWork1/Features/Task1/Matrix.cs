@@ -1,5 +1,6 @@
 namespace Study.LabWork1.Features.Task1
 {
+    //
     public class Matrix
     {
         private double[,] _matrix;

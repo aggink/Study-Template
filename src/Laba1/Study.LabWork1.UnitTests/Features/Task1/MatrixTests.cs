@@ -7,7 +7,7 @@ namespace Study.LabWork1.UnitTests.Features.Task1
     {
         private readonly Matrix a = new Matrix(new double[,] { { 1, 2 }, { 3, 4 } });
         private readonly Matrix b = new Matrix(new double[,] { { 5, 6 }, { 7, 8 } });
-        private readonly Matrix unit = new Matrix(new double[,] { { 1, 0 }, { 0, 1 } });
+        private readonly Matrix unit = new Matrix(new double[,] { { 1, 0 }, { 0, 1 } });//
 
         private int passedTests = 0;
         private int totalTests = 0;

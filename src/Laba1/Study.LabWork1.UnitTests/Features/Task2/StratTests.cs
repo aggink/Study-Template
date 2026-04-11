@@ -12,7 +12,7 @@ namespace Study.LabWork1.UnitTests.Features.Task2
         public void Setup()
         {
             passedTests = 0;
-            totalTests = 0;
+            totalTests = 0;//
         }
 
         [Test]

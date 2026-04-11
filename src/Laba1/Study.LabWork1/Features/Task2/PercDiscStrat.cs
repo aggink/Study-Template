@@ -2,7 +2,7 @@ namespace Study.LabWork1.Features.Task2
 {
     public class PercDiscStrat : IStrategy
     {
-        private readonly double _percentage;
+        private readonly double _percentage;//
 
         public PercDiscStrat(double percentage)
         {

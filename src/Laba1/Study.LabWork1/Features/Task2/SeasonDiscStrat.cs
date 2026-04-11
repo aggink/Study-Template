@@ -4,7 +4,7 @@ namespace Study.LabWork1.Features.Task2
     {
         public double Calculate(double orderAmount)
         {
-            return orderAmount * 0.85;
+            return orderAmount * 0.85;//
         }
     }
 }

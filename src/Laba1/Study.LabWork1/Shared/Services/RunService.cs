@@ -3,7 +3,7 @@ using Study.LabWork1.Features.Task2;
 using Study.LabWork1.Shared.Abstractions;
 
 namespace Study.LabWork1.Shared.Services;
-
+//
 public class RunService : IRunService
 {
     public void RunTask1()
