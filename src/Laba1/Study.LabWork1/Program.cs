@@ -15,7 +15,7 @@ public static class Program
     /// </summary>
     public static void Main()
     {
-        int RUN_TASK_NUMBER = 2;
+        int RUN_TASK_NUMBER = 1;
 
         var service = new RunService();
 
