@@ -3,10 +3,32 @@
 
 ## Contents
 
+- [CsvOrderRepository](#T-Study-LabWork1-Features-Task2-CsvOrderRepository 'Study.LabWork1.Features.Task2.CsvOrderRepository')
+  - [#ctor(filePath)](#M-Study-LabWork1-Features-Task2-CsvOrderRepository-#ctor-System-String- 'Study.LabWork1.Features.Task2.CsvOrderRepository.#ctor(System.String)')
+  - [Add()](#M-Study-LabWork1-Features-Task2-CsvOrderRepository-Add-Study-LabWork1-Features-Task2-Order- 'Study.LabWork1.Features.Task2.CsvOrderRepository.Add(Study.LabWork1.Features.Task2.Order)')
+  - [GetAll()](#M-Study-LabWork1-Features-Task2-CsvOrderRepository-GetAll 'Study.LabWork1.Features.Task2.CsvOrderRepository.GetAll')
+  - [GetById()](#M-Study-LabWork1-Features-Task2-CsvOrderRepository-GetById-System-Int32- 'Study.LabWork1.Features.Task2.CsvOrderRepository.GetById(System.Int32)')
+  - [Save()](#M-Study-LabWork1-Features-Task2-CsvOrderRepository-Save 'Study.LabWork1.Features.Task2.CsvOrderRepository.Save')
+- [IOrderRepository](#T-Study-LabWork1-Features-Task2-IOrderRepository 'Study.LabWork1.Features.Task2.IOrderRepository')
+  - [Add()](#M-Study-LabWork1-Features-Task2-IOrderRepository-Add-Study-LabWork1-Features-Task2-Order- 'Study.LabWork1.Features.Task2.IOrderRepository.Add(Study.LabWork1.Features.Task2.Order)')
+  - [GetAll()](#M-Study-LabWork1-Features-Task2-IOrderRepository-GetAll 'Study.LabWork1.Features.Task2.IOrderRepository.GetAll')
+  - [GetById()](#M-Study-LabWork1-Features-Task2-IOrderRepository-GetById-System-Int32- 'Study.LabWork1.Features.Task2.IOrderRepository.GetById(System.Int32)')
+  - [Save()](#M-Study-LabWork1-Features-Task2-IOrderRepository-Save 'Study.LabWork1.Features.Task2.IOrderRepository.Save')
 - [IRunService](#T-Study-LabWork1-Shared-Abstractions-IRunService 'Study.LabWork1.Shared.Abstractions.IRunService')
   - [RunTask1()](#M-Study-LabWork1-Shared-Abstractions-IRunService-RunTask1 'Study.LabWork1.Shared.Abstractions.IRunService.RunTask1')
   - [RunTask2()](#M-Study-LabWork1-Shared-Abstractions-IRunService-RunTask2 'Study.LabWork1.Shared.Abstractions.IRunService.RunTask2')
   - [RunTask3()](#M-Study-LabWork1-Shared-Abstractions-IRunService-RunTask3 'Study.LabWork1.Shared.Abstractions.IRunService.RunTask3')
+- [InMemoryOrderRepository](#T-Study-LabWork1-Features-Task2-InMemoryOrderRepository 'Study.LabWork1.Features.Task2.InMemoryOrderRepository')
+  - [Add()](#M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-Add-Study-LabWork1-Features-Task2-Order- 'Study.LabWork1.Features.Task2.InMemoryOrderRepository.Add(Study.LabWork1.Features.Task2.Order)')
+  - [GetAll()](#M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-GetAll 'Study.LabWork1.Features.Task2.InMemoryOrderRepository.GetAll')
+  - [GetById()](#M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-GetById-System-Int32- 'Study.LabWork1.Features.Task2.InMemoryOrderRepository.GetById(System.Int32)')
+  - [Save()](#M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-Save 'Study.LabWork1.Features.Task2.InMemoryOrderRepository.Save')
+- [Order](#T-Study-LabWork1-Features-Task2-Order 'Study.LabWork1.Features.Task2.Order')
+  - [CustomerName](#P-Study-LabWork1-Features-Task2-Order-CustomerName 'Study.LabWork1.Features.Task2.Order.CustomerName')
+  - [Id](#P-Study-LabWork1-Features-Task2-Order-Id 'Study.LabWork1.Features.Task2.Order.Id')
+  - [OrderDate](#P-Study-LabWork1-Features-Task2-Order-OrderDate 'Study.LabWork1.Features.Task2.Order.OrderDate')
+  - [TotalAmount](#P-Study-LabWork1-Features-Task2-Order-TotalAmount 'Study.LabWork1.Features.Task2.Order.TotalAmount')
+  - [ToString()](#M-Study-LabWork1-Features-Task2-Order-ToString 'Study.LabWork1.Features.Task2.Order.ToString')
 - [Program](#T-Study-LabWork1-Program 'Study.LabWork1.Program')
   - [RUN_TASK_NUMBER](#F-Study-LabWork1-Program-RUN_TASK_NUMBER 'Study.LabWork1.Program.RUN_TASK_NUMBER')
   - [Main()](#M-Study-LabWork1-Program-Main 'Study.LabWork1.Program.Main')
@@ -32,6 +54,126 @@
   - [RunTask1()](#M-Study-LabWork1-Shared-Services-RunService-RunTask1 'Study.LabWork1.Shared.Services.RunService.RunTask1')
   - [RunTask2()](#M-Study-LabWork1-Shared-Services-RunService-RunTask2 'Study.LabWork1.Shared.Services.RunService.RunTask2')
   - [RunTask3()](#M-Study-LabWork1-Shared-Services-RunService-RunTask3 'Study.LabWork1.Shared.Services.RunService.RunTask3')
+
+<a name='T-Study-LabWork1-Features-Task2-CsvOrderRepository'></a>
+## CsvOrderRepository `type`
+
+##### Namespace
+
+Study.LabWork1.Features.Task2
+
+##### Summary
+
+Адаптер для хранения заказов в CSV-файле.
+Реализует порт [IOrderRepository](#T-Study-LabWork1-Features-Task2-IOrderRepository 'Study.LabWork1.Features.Task2.IOrderRepository').
+
+<a name='M-Study-LabWork1-Features-Task2-CsvOrderRepository-#ctor-System-String-'></a>
+### #ctor(filePath) `constructor`
+
+##### Summary
+
+Создаёт экземпляр репозитория с указанным путём к CSV-файлу
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| filePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Путь к CSV-файлу |
+
+<a name='M-Study-LabWork1-Features-Task2-CsvOrderRepository-Add-Study-LabWork1-Features-Task2-Order-'></a>
+### Add() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-CsvOrderRepository-GetAll'></a>
+### GetAll() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-CsvOrderRepository-GetById-System-Int32-'></a>
+### GetById() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-CsvOrderRepository-Save'></a>
+### Save() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-Study-LabWork1-Features-Task2-IOrderRepository'></a>
+## IOrderRepository `type`
+
+##### Namespace
+
+Study.LabWork1.Features.Task2
+
+<a name='M-Study-LabWork1-Features-Task2-IOrderRepository-Add-Study-LabWork1-Features-Task2-Order-'></a>
+### Add() `method`
+
+##### Summary
+
+Добавляет новый заказ
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-IOrderRepository-GetAll'></a>
+### GetAll() `method`
+
+##### Summary
+
+Возвращает все заказы
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-IOrderRepository-GetById-System-Int32-'></a>
+### GetById() `method`
+
+##### Summary
+
+Возвращает заказ по идентификатору
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-IOrderRepository-Save'></a>
+### Save() `method`
+
+##### Summary
+
+Сохраняет изменения (актуально для файловых репозиториев)
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-Study-LabWork1-Shared-Abstractions-IRunService'></a>
 ## IRunService `type`
@@ -72,6 +214,116 @@ This method has no parameters.
 ##### Summary
 
 Запуск выполнения задания 3
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-Study-LabWork1-Features-Task2-InMemoryOrderRepository'></a>
+## InMemoryOrderRepository `type`
+
+##### Namespace
+
+Study.LabWork1.Features.Task2
+
+##### Summary
+
+Адаптер для хранения заказов в оперативной памяти (In-Memory).
+Реализует порт [IOrderRepository](#T-Study-LabWork1-Features-Task2-IOrderRepository 'Study.LabWork1.Features.Task2.IOrderRepository').
+
+<a name='M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-Add-Study-LabWork1-Features-Task2-Order-'></a>
+### Add() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-GetAll'></a>
+### GetAll() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-GetById-System-Int32-'></a>
+### GetById() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Study-LabWork1-Features-Task2-InMemoryOrderRepository-Save'></a>
+### Save() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-Study-LabWork1-Features-Task2-Order'></a>
+## Order `type`
+
+##### Namespace
+
+Study.LabWork1.Features.Task2
+
+##### Summary
+
+Модель заказа
+
+<a name='P-Study-LabWork1-Features-Task2-Order-CustomerName'></a>
+### CustomerName `property`
+
+##### Summary
+
+Имя клиента
+
+<a name='P-Study-LabWork1-Features-Task2-Order-Id'></a>
+### Id `property`
+
+##### Summary
+
+Уникальный идентификатор заказа
+
+<a name='P-Study-LabWork1-Features-Task2-Order-OrderDate'></a>
+### OrderDate `property`
+
+##### Summary
+
+Дата создания заказа
+
+<a name='P-Study-LabWork1-Features-Task2-Order-TotalAmount'></a>
+### TotalAmount `property`
+
+##### Summary
+
+Общая сумма заказа
+
+<a name='M-Study-LabWork1-Features-Task2-Order-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+
+
+##### Returns
+
+
 
 ##### Parameters
 
