@@ -1,4 +1,5 @@
 using Study.LabWork1.Features.Task1;
+using Study.LabWork1.Features.Task2;
 using Study.LabWork1.Shared.Abstractions;
 
 namespace Study.LabWork1.Shared.Services;
@@ -25,26 +26,6 @@ public class RunService : IRunService
                 { 7, 8 }
         });
 
-        Console.WriteLine("Матрица A:");
-        Console.WriteLine(a);
-        Console.WriteLine();
-
-        Console.WriteLine("Матрица B:");
-        Console.WriteLine(b);
-        Console.WriteLine();
-
-        Console.WriteLine("A + B:");
-        Console.WriteLine(a + b);
-        Console.WriteLine();
-
-        Console.WriteLine("Транспонирование A:");
-        Console.WriteLine(~a);
-        Console.WriteLine();
-
-        Console.WriteLine("A * B:");
-        Console.WriteLine(a * b);
-        Console.WriteLine();
-
         Console.WriteLine($"Определитель A: {a.Determinant}");
         Console.WriteLine($"Определитель B: {b.Determinant}");
         Console.WriteLine();
@@ -55,34 +36,24 @@ public class RunService : IRunService
         Console.WriteLine($"A < B: {a < b}");
         Console.WriteLine();
 
-        Matrix c = new Matrix(new double[,]
-        {
-                { 4, 7 },
-                { 2, 6 }
-        });
-
-        Console.WriteLine("Матрица C:");
-        Console.WriteLine(c);
-        Console.WriteLine();
-
-        Console.WriteLine("Обратная матрица C:");
-        Console.WriteLine(c.GetInverse());
-        Console.WriteLine();
-
-        Console.WriteLine("A / C:");
-        Console.WriteLine(a / c); }
-
+    }
       /// <summary>
       /// Задание 2
       /// </summary>
         public void RunTask2() {
-    }
+        var context = new Context(1000m, new ConcreteStrategy1(10));
 
-    /// <summary>
-    /// Задание 3
-    /// </summary>
-    public void RunTask3()
-    {
-    }
+        Console.WriteLine("Скидка 10%:");
+        Console.WriteLine(context.Execute());
+        Console.WriteLine();
+
+        }
+
+        /// <summary>
+        /// Задание 3
+        /// </summary>
+        public void RunTask3()
+        {
+        }
 }
 
