@@ -2,26 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+//проверка товара, резервирование и оплата
 namespace Study.LabWork1.Features.Task2
 {
     public class PurchaseProcessor
     {
-        // Проверка наличия товара
-        public void CheckAvailability()
+        public string CheckAvailability()
         {
-            Console.WriteLine("Проверка наличия товара на складе");
+            return "Проверка наличия товара на складе";
         }
 
-        // Резервирование товара
-        public void ReserveItem()
+        public string ReserveItem()
         {
-            Console.WriteLine("Товар зарезервирован");
+            return "Товар зарезервирован";
         }
 
-        // Оформление платежа
-        public void ProcessPayment()
+        public string ProcessPayment()
         {
-            Console.WriteLine("Платеж успешно оформлен");
+            return "Платеж успешно оформлен";
         }
     }
 }

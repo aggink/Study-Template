@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+//уведомление покупателя
 namespace Study.LabWork1.Features.Task2
-
 {
     public class BuyerNotificationService
     {
-        // Уведомление покупателя
-        public void SendNotification()
+        public string SendNotification()
         {
-            Console.WriteLine("Уведомление покупателю отправлено");
+            return "Уведомление покупателю отправлено";
         }
     }
 }

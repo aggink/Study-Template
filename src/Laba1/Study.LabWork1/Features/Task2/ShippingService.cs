@@ -1,21 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+// подготовка доставки
 namespace Study.LabWork1.Features.Task2
-
+{
     public class ShippingService
     {
-        // Создание этикетки доставки
-        public void CreateLabel()
+        public string CreateLabel()
         {
-            Console.WriteLine("Этикетка доставки создана");
+            return "Этикетка доставки создана";
         }
 
-        // Печать этикетки
-        public void PrintLabel()
+        public string PrintLabel()
         {
-            Console.WriteLine("Этикетка доставки распечатана");
+            return "Этикетка доставки распечатана";
         }
     }
 }
