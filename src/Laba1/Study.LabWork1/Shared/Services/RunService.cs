@@ -33,17 +33,6 @@ public class RunService : IRunService
         Console.WriteLine(b);
         Console.WriteLine();
 
-        Console.WriteLine("A + B:");
-        Console.WriteLine(a + b);
-        Console.WriteLine();
-
-        Console.WriteLine("Транспонирование A:");
-        Console.WriteLine(~a);
-        Console.WriteLine();
-
-        Console.WriteLine("A * B:");
-        Console.WriteLine(a * b);
-        Console.WriteLine();
 
         Console.WriteLine($"Определитель A: {a.Determinant}");
         Console.WriteLine($"Определитель B: {b.Determinant}");
@@ -53,24 +42,7 @@ public class RunService : IRunService
         Console.WriteLine($"A != B: {a != b}");
         Console.WriteLine($"A > B: {a > b}");
         Console.WriteLine($"A < B: {a < b}");
-        Console.WriteLine();
-
-        Matrix c = new Matrix(new double[,]
-        {
-                { 4, 7 },
-                { 2, 6 }
-        });
-
-        Console.WriteLine("Матрица C:");
-        Console.WriteLine(c);
-        Console.WriteLine();
-
-        Console.WriteLine("Обратная матрица C:");
-        Console.WriteLine(c.GetInverse());
-        Console.WriteLine();
-
-        Console.WriteLine("A / C:");
-        Console.WriteLine(a / c); }
+        Console.WriteLine(); }
 
       /// <summary>
       /// Задание 2
