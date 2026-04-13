@@ -9,17 +9,22 @@ public static class Program
 {
     /// <summary>
     /// Номер выполняемой задачи
+<<<<<<< task-3
     /// </summary>
     private const int RUN_TASK_NUMBER = 3;
 
+=======
+    /// </summary
+>>>>>>> main
     /// <summary>
     /// Старт программы
     /// </summary>
     public static void Main()
     {
-        var service = new RunService();
+        Console.WriteLine("Выберите задание (1, 2 или 3):");//1
+        int RUN_TASK_NUMBER = int.Parse(Console.ReadLine());
 
-        // todo: можно переписать на ввод с консоли
+        var service = new RunService();
 
         switch (RUN_TASK_NUMBER)
         {
@@ -37,3 +42,4 @@ public static class Program
         }
     }
 }
+//
