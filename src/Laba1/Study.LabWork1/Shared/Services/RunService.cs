@@ -1,4 +1,4 @@
-using Study.LabWork1.Features.Task1.Task1;
+using Study.LabWork1.Features.Task1;
 using Study.LabWork1.Shared.Abstractions;
 
 namespace Study.LabWork1.Shared.Services;

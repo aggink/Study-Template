@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Study.LabWork1.Features.Task1.Task1
+namespace Study.LabWork1.Features.Task1
 {
     public class HSL
     {
@@ -21,6 +21,7 @@ namespace Study.LabWork1.Features.Task1.Task1
                     hue += 360;
             }
         }
+
         //насыщенность
         public double Saturation
         {
@@ -32,6 +33,7 @@ namespace Study.LabWork1.Features.Task1.Task1
                 else saturation = value;
             }
         }
+
         //светлота
         public double Lightness
         {
@@ -43,6 +45,7 @@ namespace Study.LabWork1.Features.Task1.Task1
                 else lightness = value;
             }
         }
+
         //конструктор
         public HSL(double h, double s, double l)
         {
@@ -54,6 +57,7 @@ namespace Study.LabWork1.Features.Task1.Task1
         public HSL() : this(0, 0, 0)
         {
         }
+
         // перевод из HSL в RGB
         public (byte R, byte G, byte B) ToRGB()
         {
@@ -95,6 +99,7 @@ namespace Study.LabWork1.Features.Task1.Task1
 
             return p;
         }
+
         // перевод в HEX 
         public string ToHex()
         {
@@ -104,32 +109,38 @@ namespace Study.LabWork1.Features.Task1.Task1
                    rgb.G.ToString("X2") +
                    rgb.B.ToString("X2");
         }
+
         //вывод в строку
         public override string ToString()
         {
             return $"hsl({Hue},{Saturation}%,{Lightness}%)";
         }
+
         //сложение двух цветов
         public static HSL operator +(HSL a, HSL b)
         {
             return new HSL(a.Hue + b.Hue, a.Saturation + b.Saturation, a.Lightness + b.Lightness);
         }
+
         //вычитание двух цветов
         public static HSL operator -(HSL a, HSL b)
         {
             return new HSL(a.Hue - b.Hue, a.Saturation - b.Saturation, a.Lightness - b.Lightness);
         }
+
         //умножение на число
         public static HSL operator *(HSL a, double k)
         {
             return new HSL(a.Hue * k, a.Saturation * k, a.Lightness * k);
         }
+
         //деление на число
         public static HSL operator /(HSL a, double k)
         {
             if (k == 0) throw new Exception("Деление на ноль");
             return new HSL(a.Hue / k, a.Saturation / k, a.Lightness / k);
         }
+
         //проверка равенства цветов
         public static bool operator ==(HSL a, HSL b)
         {
@@ -137,6 +148,7 @@ namespace Study.LabWork1.Features.Task1.Task1
                    a.Saturation == b.Saturation &&
                    a.Lightness == b.Lightness;
         }
+
         //проверка неравенства
         public static bool operator !=(HSL a, HSL b)
         {
