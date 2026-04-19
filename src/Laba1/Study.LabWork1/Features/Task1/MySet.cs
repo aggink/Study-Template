@@ -4,12 +4,6 @@ using System.Text;
 using System.Collections;
 namespace Study.LabWork1.Features.Task1;
 
-
-
-
-
-
-
 /// <summary>
 /// Обобщенный класс, представляющий математическое множество уникальных элементов.
 /// </summary>
