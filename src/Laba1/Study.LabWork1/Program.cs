@@ -19,21 +19,8 @@ public static class Program
     {
         var service = new RunService();
 
-        // todo: можно переписать на ввод с консоли
-
-        switch (RUN_TASK_NUMBER)
-        {
-            case 1:
-                service.RunTask1();
-                break;
-            case 2:
-                service.RunTask2();
-                break;
-            case 3:
-                service.RunTask3();
-                break;
-            default:
-                throw new NotSupportedException();
-        }
+        service.RunTask1();
+        Console.WriteLine();
+        service.RunTask2();
     }
 }

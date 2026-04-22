@@ -1,3 +1,5 @@
+using Study.LabWork1.Features.Task1;
+using Study.LabWork1.Features.Task2;
 using Study.LabWork1.Shared.Abstractions;
 
 namespace Study.LabWork1.Shared.Services;
@@ -10,15 +12,48 @@ public class RunService : IRunService
     /// <summary>
     /// Задание 1
     /// </summary>
-    public void RunTask1() => throw new NotImplementedException();
+    public void RunTask1()
+    {
+        Matrix a = new Matrix(new double[,]
+        {
+                { 1, 2 },
+                { 3, 4 }
+        });
 
-    /// <summary>
-    /// Задание 2
-    /// </summary>
-    public void RunTask2() => throw new NotImplementedException();
+        Matrix b = new Matrix(new double[,]
+        {
+                { 5, 6 },
+                { 7, 8 }
+        });
 
-    /// <summary>
-    /// Задание 3
-    /// </summary>
-    public void RunTask3() => throw new NotImplementedException();
+        Console.WriteLine($"Определитель A: {a.Determinant}");
+        Console.WriteLine($"Определитель B: {b.Determinant}");
+        Console.WriteLine();
+
+        Console.WriteLine($"A == B: {a == b}");
+        Console.WriteLine($"A != B: {a != b}");
+        Console.WriteLine($"A > B: {a > b}");
+        Console.WriteLine($"A < B: {a < b}");
+        Console.WriteLine();
+
+    }
+      /// <summary>
+      /// Задание 2
+      /// </summary>
+        public void RunTask2() {
+        var context = new Context(1000m, new ConcreteStrategy1(10));
+
+        Console.WriteLine("Скидка 10%:");
+        Console.WriteLine(context.Execute());
+        Console.WriteLine();
+
+        }
+
+        /// <summary>
+        /// Задание 3
+        /// </summary>
+        public void RunTask3()
+        {
+        }
 }
+
