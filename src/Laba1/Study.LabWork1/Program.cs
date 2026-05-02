@@ -19,9 +19,13 @@ public static class Program
     {
         var service = new RunService();
 
-        // todo: можно переписать на ввод с консоли
+        Console.Write("Введите номер задания: ");
+        var input = Console.ReadLine();
 
-        switch (RUN_TASK_NUMBER)
+        int taskNumber = int.Parse(input);
+
+
+        switch (taskNumber)
         {
             case 1:
                 service.RunTask1();
