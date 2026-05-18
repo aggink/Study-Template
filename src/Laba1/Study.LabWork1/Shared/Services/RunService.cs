@@ -11,7 +11,6 @@ public class RunService : IRunService
     /// <summary>
     /// Задание 1
     /// </summary>
-    public void RunTask1() => throw new NotImplementedException();
     public void RunTask1()
     {
         Console.WriteLine("=== Вариант 7. Множества ===\n");
